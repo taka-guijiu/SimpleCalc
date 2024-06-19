@@ -24,8 +24,8 @@ namespace SimpleCalc
             int valueRight;
             int valueAnswer;
             // 値の取り込み
-            valueLeft = int.Parse(Input1TextBox.Text);
-            valueRight = int.Parse(Input2TextBox.Text);
+            valueLeft = InputCheck(Input1TextBox.Text, out valueLeft);
+            valueRight = InputCheck(Input2TextBox.Text, out valueRight);
 
             // 取り込んだ値の計算
             valueAnswer = valueLeft + valueRight;
@@ -34,5 +34,20 @@ namespace SimpleCalc
             AnswerTextBox.Text = valueAnswer.ToString();
 
         }
+        private int InputCheck(string textValue, out int value)
+        {
+            if (int.TryParse(textValue, out value) == true)
+            {
+                value = int.Parse(textValue);
+            }
+            else
+            {
+                value = 0;
+            }
+            return value;
+        }
+
+
     }
+
 }
